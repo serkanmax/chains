@@ -1,7 +1,8 @@
 buildscript {
     ext {
-        KOTLIN_VERSION = "1.9.0"
-        KETHEREUM_VERSION = "0.85.7"
+        // Updated to latest stable versions for security and stability
+        KOTLIN_VERSION = "1.9.25"       // Upgrade from 1.9.0 → bugfixes & compiler stability
+        KETHEREUM_VERSION = "0.85.9"    // Minor upgrade (latest stable at time of writing)
     }
 
     repositories {
@@ -10,7 +11,7 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${KOTLIN_VERSION}"
-        classpath 'com.github.ben-manes:gradle-versions-plugin:0.47.0'
+        classpath "com.github.ben-manes:gradle-versions-plugin:0.51.0" // Upgrade from 0.47.0
     }
 }
 
@@ -19,8 +20,11 @@ subprojects {
 
     repositories {
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        // Jitpack is a potential supply-chain risk → use only if strictly necessary
+        maven { url "https://jitpack.io" }
     }
 }
 
-apply from: 'https://raw.githubusercontent.com/ligi/gradle-common/master/versions_plugin_stable_only.gradle'
+// ⚠️ Removed remote script execution for security reasons.
+// Instead, consider copying the required gradle script locally and version-controlling it.
+// apply from: 'https://raw.githubusercontent.com/ligi/gradle-common/master/versions_plugin_stable_only.gradle'
